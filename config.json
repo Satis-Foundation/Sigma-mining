@@ -1,0 +1,9 @@
+{
+    "DISABLED_PAIRS" : [],
+    "CURRENCY" : ["usdt", "usdc"],
+    "MAX_LIVE_POSITION_TIME" : 900, 
+    "UPDATE_DELAY" : 3,
+    "SPREAD" : 0.5, 
+    "LONG_SHORT_RATIO" : 0.5,
+    "LEVERAGE": 1
+}
