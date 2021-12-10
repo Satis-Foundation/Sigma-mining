@@ -12,7 +12,6 @@ class SigmaMining:
                                  currency_list=self.currency_list,
                                  disabled_pairs=self.disabled_pairs,
                                  )
-        self.satisAPI.debug_mode = False  # TODO remove it
         self.fair_price_constructor = FairPriceConstructor()
         self.LONG_SHORT_RATIO = json_config["LONG_SHORT_RATIO"]
         self.SPREAD = json_config["SPREAD"]

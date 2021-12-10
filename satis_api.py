@@ -2,7 +2,6 @@ import json
 from functools import wraps
 
 import requests
-from requests_toolbelt.utils.dump import dump_all  # TODO: remove it
 
 REST_API_URL = "http://sandbox-t1.sat.is"
 
@@ -12,12 +11,11 @@ class SatisAPI:
 
     def __init__(self, currency_list, disabled_pairs, auth=None):
         self.auth = auth
-        self.debug_mode = True  # TODO: remove it
         self.currency_list = currency_list
         self.disabled_pairs = disabled_pairs
 
     @staticmethod
-    def send_requests(method, api, *, debug=False, **kwargs):  # TODO: remove the debug
+    def send_requests(method, api, *args, **kwargs):
         """
         send api requests
         If show, print http header
@@ -26,9 +24,6 @@ class SatisAPI:
         url = SatisAPI.REST_API_URL + api
         response = requests.request(method, url, **kwargs)
 
-        # TODO: remove the show part
-        if debug:
-            print(dump_all(response).decode("utf-8"))
 
         try:
             return_json = json.loads(response.text)
@@ -37,17 +32,16 @@ class SatisAPI:
 
         return return_json
 
-    def _send_requests(self, method, api, auth_required=False, *, debug=False, **kwargs):  # TODO: remove the debug
+    def _send_requests(self, method, api, auth_required=False, *args, **kwargs):
         """
         provide the auth for the private APIs.
         """
         if auth_required:
             if not self.auth:
                 raise Exception("No auth is found.")
-            return self.send_requests(method, api, auth=self.auth, debug=self.debug_mode,
-                                      **kwargs)  # TODO: remove the debug
+            return self.send_requests(method, api, auth=self.auth, **kwargs)
         else:
-            return self.send_requests(method, api, debug=self.debug_mode, **kwargs)  # TODO: remove the debug
+            return self.send_requests(method, api, **kwargs)
 
     def _numeric_decorator(func):
         """ use this decorator can convert the result from str to int/float if it can"""

@@ -10,7 +10,6 @@ def private_key_warning():
     show the warning statement to the user and ask them to input the private key
     """
 
-    # TODO: modify the wording
     print("This software will not save your private key")
     PRIVATE_KEY = input("please input your private key here: ")
     return PRIVATE_KEY
